@@ -138,6 +138,6 @@ HCP Terraform has been successfully initialized!
 - YOUR_PROJECT is **Default Project** by default. you can set yours.
 - Add required permissions to the role 
 - Go to *Terraform Cloud > Workspaces > Workspace-Name > Variables*
-- Configure Terraform Cloud Environment Variables(`TFC_AWS_PROVIDER_AUTH`=`true`, `TFC_AWS_RUN_ROLE_ARN`=`arn:aws:iam::123456789012:role/YourTerraformRoleName
+- Configure Terraform Cloud Environment Variables(`TFC_AWS_PROVIDER_AUTH`=`true`, `TFC_AWS_RUN_ROLE_ARN`=`arn:aws:iam::123456789012:role/YourTerraformRoleName`
 
 
