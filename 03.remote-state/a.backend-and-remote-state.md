@@ -21,3 +21,102 @@ In production there are several problems working with local state file:
 #### b. Remote state
 - With a remote state, terraform writes the state to a remote backend or data store, which can then between all members of your team.
 - Terraform support storing state on many backends such as, S3, AzureRM, Consul, GCS, Kubernetes, etc... ([Documentation](https://developer.hashicorp.com/terraform/language/backend/)).
+
+#### C. Configure S3 backend
+- First ceate a bucket with `versioning` and `encryption` enabled. Note it region.
+- Got to the [documentation](https://developer.hashicorp.com/terraform/language/backend/s3) and get the configuration template.
+
+EX: **Method One**
+```tf
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 6.0"
+    }
+  }
+}
+
+terraform {
+    backend "s3" {
+    bucket = "terraform-mastering-123456789123-ca-central-1-an"
+    key    = "s3_backend.tfstate"
+    region = "ca-central-1"
+  }
+ }
+```
+
+```bash
+$ terraform init
+```
+
+EX: **Method two**
+```tf
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 6.0"
+    }
+  }
+
+  backend "s3" {
+    bucket = "terraform-mastering-123456789123-ca-central-1-an"
+    key    = "s3_backend.tfstate"
+    region = "ca-central-1"
+  }
+}
+```
+
+```bash
+$ terraform init
+```
+
+- You can also configute the terraform block is a separated `.tf` file.
+
+>[!WARNING]
+>
+> You cannot use variables in the terraform block
+
+- We are now using the remote state.
+- The local state can be deleted !
+
+#### d. Remote state locking
+
+- **Remote state locking** prevents race conditions and state corruption by allowing only one user to run Terraform at a time.
+>[!NOTE]
+> State locking is enable by default on local state.
+
+- Enable S3 remote state locking:
+
+**Step1**
+
+- Create an Amazon DynamoDB table.
+- Give it a name
+- Partion key MUST be `LockID` of type string, with this exact spelling and case.
+
+**Step2**
+
+- Set terraform to use DynamoDB Table by givieng its name.
+```tf
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 6.0"
+    }
+  }
+    backend "s3" {
+    bucket = "terraform-mastering-123456789123-ca-central-1-an"
+    dynamodb_table = "terraform_s3_backend_lock"
+    key    = "s3_backend.tfstate"
+    region = "ca-central-1"
+  }
+}
+ ```
+
+ **Step3**
+ - Reconfigure the backend
+```bash
+terraform init -reconfigure
+```
