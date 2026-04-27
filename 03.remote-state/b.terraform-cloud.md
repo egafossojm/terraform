@@ -73,7 +73,7 @@ $ terraform login
 > {
 >   "credentials": {
 >     "app.terraform.io": {
->       "token": "bwXrFFgDlTuQXA.atlasv1.mpQKwUgUgqrq9ayzuczlPrNCARw1xjWvf7xJJiTeiaAaEn2VC0BzPxogw7X2hjlteEQ"
+>       "token": "TOKEN_SECRET"
 >     }
 >   }
 > }
