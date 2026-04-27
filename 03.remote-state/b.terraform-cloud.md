@@ -48,7 +48,7 @@ terraform {
   }
 }
 ```
->[NOTE]
+>[!NOTE]
 >
 > - No problem if the workspace does not already exist. But if it exists, Should not contains any state file.
 > - `cloud bock` and `backend block` cannot exist together.
@@ -96,7 +96,9 @@ HCP Terraform has been successfully initialized!
 
 **4. Configure AWS Credentials in Terraform Cloud**
 
-**IMPORTANT**: Terraform is now configured for remote execution on Terraform Cloud. Ensure that the necessary Cloud credentials and permissions are configured within the workspace."
+>[!NOTE]
+>
+> Terraform is now configured for remote execution on Terraform Cloud. Ensure that the necessary Cloud credentials and permissions are configured within the workspace."
 
 **Method 1: Set Access Keys**
 
