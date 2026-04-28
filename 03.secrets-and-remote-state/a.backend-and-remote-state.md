@@ -81,7 +81,7 @@ $ terraform init
 - We are now using the remote state.
 - The local state can be deleted !
 
-#### d. Remote state locking
+#### d. Remote state locking[DEPRECATED]
 
 - **Remote state locking** prevents race conditions and state corruption by allowing only one user to run Terraform at a time.
 >[!NOTE]
@@ -119,4 +119,26 @@ terraform {
  - Reconfigure the backend
 ```bash
 terraform init -reconfigure
+```
+
+#### e. Remote state locking [UPDATED]
+- Using DynamoDB is now deprecated.
+- S3 now supports State locking
+- In congiguration, you juste need to set `use_lockfile = true`
+
+```tf
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 6.0"
+    }
+  }
+    backend "s3" {
+    bucket = "terraform-mastering-123456789123-ca-central-1-an"
+    key    = "s3_backend.tfstate"
+    use_lockfile = true
+    region = "ca-central-1"
+  }
+}
 ```
