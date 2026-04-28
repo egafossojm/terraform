@@ -81,11 +81,11 @@ $ terraform init
 - We are now using the remote state.
 - The local state can be deleted !
 
-#### d. Remote state locking[DEPRECATED]
+#### d. Remote state locking [DEPRECATED]
 
 - **Remote state locking** prevents race conditions and state corruption by allowing only one user to run Terraform at a time.
 >[!NOTE]
-> State locking is enable by default on local state.
+> State locking is enabled by default on local state.
 
 - Enable S3 remote state locking:
 
