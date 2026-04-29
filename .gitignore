@@ -1,1 +1,4 @@
 01-aws/
+terraform.tfstate
+terraform.tfstate.backup
+.terraform/
