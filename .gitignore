@@ -1,4 +1,13 @@
 01-aws/
-terraform.tfstate
-terraform.tfstate.backup
 .terraform/
+.terraform.tfstate.lock.info
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.tfplan.*
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
